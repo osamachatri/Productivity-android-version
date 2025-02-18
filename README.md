@@ -118,5 +118,5 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-💡 **Developed with ❤️ by [Oussama Chatri]**
+💡 ***Developed with ❤️ by Oussama Chatri***
 
