@@ -27,19 +27,58 @@
 
 ## 📂 Project Structure
 ```
-📦 ProductivityX
+📦 myapp
  ┣ 📂 app
- ┃ ┣ 📂 src/main/java/com/example/productivityx
- ┃ ┃ ┣ 📂 core (Core functionalities: DI, Database, Network, Utils)
- ┃ ┃ ┣ 📂 main (Application setup: MyApp, MainActivity)
- ┃ ┃ ┣ 📂 auth (Authentication: Data, Domain, UI)
- ┃ ┃ ┣ 📂 features (Feature modules: Notes, To-Do, Events, Pomodoro, Chatbot)
- ┃ ┃ ┣ 📂 ui (Reusable UI components)
- ┃ ┃ ┣ 📂 navigation (Navigation setup)
- ┃ ┃ ┗ 📂 res (Resources: Drawables, Strings, Themes)
- ┃ ┣ 📂 src/test (Unit tests)
- ┃ ┣ 📂 src/androidTest (UI tests)
- ┃ ┗ AndroidManifest.xml
+ ┃ ┣ 📂 src/main
+ ┃ ┃ ┣ 📂 java/com/example/myapp
+ ┃ ┃ ┃ ┣ 📂 core                   
+ ┃ ┃ ┃ ┃ ┣ 📂 di                 # ✅ Dependency Injection (Hilt modules)
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 AppModule.kt    # Provides app-wide dependencies (DB, API, DataStore)
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 DatabaseModule.kt # Provides Room Database & DAOs
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 NetworkModule.kt  # Provides Retrofit & API services
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜 DispatcherModule.kt # Provides Dispatchers for Coroutines
+ ┃ ┃ ┃ ┃ ┣ 📂 datastore          # ✅ DataStore for app preferences
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 SettingsManager.kt # Handles theme, notification preferences
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜 UserPreferences.kt # DataStore model
+ ┃ ┃ ┃ ┃ ┣ 📂 database           # ✅ Room Database setup
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 AppDatabase.kt   # Main Room database
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 NoteDao.kt       # DAO for Notes
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 TodoDao.kt       # DAO for To-Do lists
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜 EventDao.kt      # DAO for Events
+ ┃ ┃ ┃ ┃ ┣ 📂 network            # ✅ Retrofit API Service
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 ApiService.kt    # Retrofit API calls
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜 ApiConstants.kt  # API Endpoints
+ ┃ ┃ ┃ ┃ ┣ 📂 utils              # ✅ Helper classes (Validators, DateUtils, etc.)
+ ┃ ┃ ┃ ┣ 📂 main                 # ✅ Main Application Setup
+ ┃ ┃ ┃ ┃ ┣ 📜 MyApp.kt          # Application class (Hilt & AppConfig)
+ ┃ ┃ ┃ ┃ ┣ 📜 MainActivity.kt   # Main UI entry point
+ ┃ ┃ ┃ ┃ ┗ 📜 AppModule.kt      # App-level Hilt dependencies
+ ┃ ┃ ┃ ┣ 📂 navigation           # ✅ Handles Navigation Graph
+ ┃ ┃ ┃ ┃ ┣ 📜 Screen.kt         # Sealed class for navigation routes
+ ┃ ┃ ┃ ┃ ┗ 📜 NavGraph.kt       # Navigation setup
+ ┃ ┃ ┃ ┣ 📂 auth                 # ✅ Authentication Module (Sign In/Up)
+ ┃ ┃ ┃ ┃ ┣ 📂 data               # Repositories & models
+ ┃ ┃ ┃ ┃ ┣ 📂 domain             # Use Cases
+ ┃ ┃ ┃ ┃ ┗ 📂 presentation       # UI Screens & ViewModels
+ ┃ ┃ ┃ ┣ 📂 features             # ✅ Feature Modules
+ ┃ ┃ ┃ ┃ ┣ 📂 notes              # Notes feature
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂 data             # Repositories, Data Models
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂 domain           # Use Cases
+ ┃ ┃ ┃ ┃ ┃ ┗ 📂 presentation     # UI & ViewModels
+ ┃ ┃ ┃ ┃ ┣ 📂 todo               # To-Do Lists feature
+ ┃ ┃ ┃ ┃ ┣ 📂 events             # Events feature
+ ┃ ┃ ┃ ┃ ┣ 📂 pomodoro           # Pomodoro feature
+ ┃ ┃ ┃ ┃ ┗ 📂 chatbot            # AI Chatbot feature
+ ┃ ┃ ┃ ┣ 📂 ui                   # ✅ Common UI components
+ ┃ ┃ ┃ ┃ ┣ 📜 AppTheme.kt       # Jetpack Compose Theme
+ ┃ ┃ ┃ ┃ ┣ 📜 CommonButton.kt   # Reusable buttons
+ ┃ ┃ ┃ ┃ ┣ 📜 CommonDialog.kt   # Reusable dialogs
+ ┃ ┃ ┃ ┃ ┗ 📜 LoadingIndicator.kt # Custom loading spinner
+ ┃ ┃ ┣ 📂 res                    # ✅ Resources (drawables, themes, strings)
+ ┃ ┃ ┗ AndroidManifest.xml
+ ┃ ┣ 📂 src/test                 # ✅ Unit tests
+ ┃ ┣ 📂 src/androidTest          # ✅ Instrumentation tests
+
 ```
 
 ## 🔧 Installation
