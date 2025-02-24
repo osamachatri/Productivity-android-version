@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivity.main.theme
+package com.oussama_chatri.productivity.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

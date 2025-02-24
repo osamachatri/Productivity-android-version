@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">Productivity</string>
     <string name="version">Alpha version</string>
+
+<!--    Basics-->
+    <string name="hi">Hi</string>
     
 <!--    Buttons text-->
-    
-<!--    Notes categories-->
+
+<!--    Top app bar texts-->
+    <string name="notes_screen">see your notes here!</string>
+    <string name="toDoLists_screen">see your to do lists here!</string>
+    <string name="events_screen">see your events here!</string>
+    <string name="pomodoro_screen">Study smart, not hard.</string>
+
+    <!--    Notes categories-->
     <string name="all">All</string>
     <string name="personal">Personal 💜</string>
     <string name="work">Work 💼</string>
@@ -14,5 +23,5 @@
     <string name="Health">Health ❤️</string>
     <string name="finance">Finance 💰</string>
     <string name="goals">Goals 🎯</string>
-    <string name="inspiration">Inspiration ✨</string>
+    <string name="study">Study 📚</string>
 </resources>

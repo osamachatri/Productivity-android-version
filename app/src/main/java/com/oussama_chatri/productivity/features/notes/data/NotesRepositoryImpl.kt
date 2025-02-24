@@ -14,14 +14,13 @@ class NoteRepositoryImpl(
 
     override suspend fun createNote(note: Note, saveLocally: Boolean) {
         if (saveLocally) {
-            // Save locally (Offline Mode)
             noteDao.upsert(note.toNoteEntity())
         } else {
             try {
                 val noteRequest = note.toNoteRequest()
                 val response = noteApiService.createNote(authTokenProvider.getToken() ?: "", noteRequest)
                 if (response.isSuccessful) {
-                    noteDao.upsert(note.toNoteEntity()) // Sync local DB
+                    noteDao.upsert(note.toNoteEntity())
                 } else {
                     throw Exception("Failed to create note on server")
                 }
@@ -32,32 +31,33 @@ class NoteRepositoryImpl(
     }
 
     override suspend fun getNotes(fetchFromRemote: Boolean): List<Note> {
-        return if (fetchFromRemote) {
+        return if (!fetchFromRemote) {
+            noteDao.getNotes().map { it.toNote() }
+        } else {
             try {
-                val response = noteApiService.getNotes(authTokenProvider.getToken())
+                val response = noteApiService.getNotes(authTokenProvider.getToken() ?: "")
                 if (response.isSuccessful) {
-                    val notes = response.body()?.map { it.toDomain() } ?: emptyList()
-                    noteDao.clearAllNotes()
+                    val notes = response.body()?.map { it.toNote() } ?: emptyList()
+                    // TODO(" logic of app here is : if note is exist on local db don't clear it else yeah")
+//                    noteDao.clearAllNotesWhichExistOnBothDbs()
                     noteDao.insertNotes(notes.map { it.toNoteEntity() }) // Sync local DB
                     notes
                 } else {
                     throw Exception("Failed to fetch notes from server")
                 }
             } catch (e: Exception) {
-                noteDao.getNotes().map { it.toDomain() }
+                throw Exception("Network error: Unable to create note remotely")
             }
-        } else {
-            noteDao.getNotes().map { it.toDomain() }
         }
     }
 
-    override suspend fun updateNote(note: Note, saveLocally: Boolean) {
+    override suspend fun updateNote(noteId: Int,note: Note, saveLocally: Boolean) {
         if (saveLocally) {
-            noteDao.upsert(note.toNoteEntity())
+            noteDao.upsert(note.toNoteEntity(noteId))
         } else {
             try {
                 val request = note.toUpdatedNoteRequest()
-                val response = noteApiService.updateNote(authTokenProvider.getToken(), note.id, request)
+                val response = noteApiService.updateNote(authTokenProvider.getToken() ?: "", noteId, request)
                 if (response.isSuccessful) {
                     noteDao.upsert(note.toNoteEntity()) // Sync local DB
                 } else {
@@ -74,7 +74,7 @@ class NoteRepositoryImpl(
             noteDao.deleteNoteById(noteId)
         } else {
             try {
-                val response = noteApiService.deleteNote(authTokenProvider.getToken(), noteId)
+                val response = noteApiService.deleteNote(authTokenProvider.getToken() ?: "", noteId)
                 if (response.isSuccessful) {
                     noteDao.deleteNoteById(noteId) // Sync local DB
                 } else {

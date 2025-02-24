@@ -1,4 +1,4 @@
-package com.oussama_chatri.productivity.main.theme
+package com.oussama_chatri.productivity.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -9,6 +9,9 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
@@ -33,6 +36,13 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+val LocalDimens = compositionLocalOf { Dimens() }
+
+val MaterialTheme.dimens: Dimens
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalDimens.current
+
 @Composable
 fun ProductivityTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -50,10 +60,14 @@ fun ProductivityTheme(
         else -> LightColorScheme
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content,
-        shapes = Shapes()
-    )
+    val dimens = Dimens()
+
+    CompositionLocalProvider(LocalDimens provides dimens) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content,
+            shapes = Shapes()
+        )
+    }
 }

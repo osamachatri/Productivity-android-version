@@ -48,3 +48,25 @@ fun Note.toUpdatedNoteRequest(): UpdatedNoteRequest {
         isPinned = isPinned
     )
 }
+
+fun NoteEntity.toNote(): Note {
+    return Note(
+        title = title,
+        content = content,
+        type = type,
+        creationTime = creationTime,
+        editedTime = editedTime,
+        isPinned = isPinned
+    )
+}
+
+fun NoteResponse.toNote() : Note{
+    return Note(
+        title = title,
+        content = content,
+        type = type,
+        creationTime = creationTime,
+        editedTime = editedTime,
+        isPinned = isPinned
+    )
+}

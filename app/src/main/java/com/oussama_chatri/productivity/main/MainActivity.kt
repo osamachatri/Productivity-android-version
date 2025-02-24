@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.oussama_chatri.productivity.main.theme.ProductivityTheme
+import com.oussama_chatri.productivity.ui.theme.ProductivityTheme
 import com.oussama_chatri.productivity.navigation.MainGraph
 
 class MainActivity : ComponentActivity() {
