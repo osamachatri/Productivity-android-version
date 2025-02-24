@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Productivity</string>
+    <string name="version">Alpha version</string>
+    
+<!--    Buttons text-->
+    
+<!--    Notes categories-->
+    <string name="all">All</string>
+    <string name="personal">Personal 💜</string>
+    <string name="work">Work 💼</string>
+    <string name="creative">Creative 🎨</string>
+    <string name="ideas">Ideas 💡</string>
+    <string name="travle">Travel ✈️</string>
+    <string name="Health">Health ❤️</string>
+    <string name="finance">Finance 💰</string>
+    <string name="goals">Goals 🎯</string>
+    <string name="inspiration">Inspiration ✨</string>
 </resources>
