@@ -13,6 +13,12 @@
     <string name="events_screen">see your events here!</string>
     <string name="pomodoro_screen">Study smart, not hard.</string>
 
+<!--    Bottom navigation bar items texts-->
+    <string name="notes">Notes</string>
+    <string name="toDoLists">To do lists</string>
+    <string name="events">Events</string>
+    <string name="pomodoro">Pomodoro</string>
+
     <!--    Notes categories-->
     <string name="all">All</string>
     <string name="personal">Personal 💜</string>

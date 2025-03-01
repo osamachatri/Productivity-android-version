@@ -43,7 +43,7 @@ val Typography = Typography(
     ),
     titleSmall = TextStyle(
         fontFamily = FontFamily(Font(R.font.poppins_semibold)),
-        fontSize = 18.sp,
+        fontSize = 17.sp,
     ),
     bodyLarge = TextStyle(
         fontFamily = FontFamily(Font(R.font.poppins_regular)),

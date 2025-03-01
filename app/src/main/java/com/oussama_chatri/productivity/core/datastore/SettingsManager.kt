@@ -20,11 +20,6 @@ class SettingsManager(private val context: Context) {
         preferences[UserPreferences.FONT_SIZE_KEY] ?: 14
     }
 
-    // Get the status of auth
-    val isLoggedInFlow : Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[UserPreferences.IS_LOGGED_IN_KEY] ?: false
-    }
-
     // Save dark mode preference
     suspend fun setDarkMode(enabled: Boolean) {
         context.dataStore.edit { preferences ->
@@ -36,13 +31,6 @@ class SettingsManager(private val context: Context) {
     suspend fun setFontSize(size: Int) {
         context.dataStore.edit { preferences ->
             preferences[UserPreferences.FONT_SIZE_KEY] = size
-        }
-    }
-
-    // Save the status of auth
-    suspend fun setLoggedIn(isLoggedIn : Boolean){
-        context.dataStore.edit { preferences ->
-            preferences[UserPreferences.IS_LOGGED_IN_KEY] = isLoggedIn
         }
     }
 }
