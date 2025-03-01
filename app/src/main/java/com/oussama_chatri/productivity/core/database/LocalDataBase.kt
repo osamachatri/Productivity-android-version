@@ -8,19 +8,19 @@ import com.oussama_chatri.productivity.features.notes.data.local.NoteDao
 import com.oussama_chatri.productivity.features.notes.data.local.NoteEntity
 
 @Database(entities = [NoteEntity::class], version = 1, exportSchema = false)
-abstract class LocatDataBase : RoomDatabase() {
+abstract class LocalDataBase : RoomDatabase() {
 
     abstract val noteDao: NoteDao
 
     companion object {
         @Volatile
-        private var INSTANCE: LocatDataBase? = null
+        private var INSTANCE: LocalDataBase? = null
 
-        fun getInstance(context: Context): LocatDataBase {
+        fun getInstance(context: Context): LocalDataBase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    LocatDataBase::class.java,
+                    LocalDataBase::class.java,
                     "productivity_db"
                 ).build()
                 INSTANCE = instance

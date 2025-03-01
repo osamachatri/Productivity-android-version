@@ -72,6 +72,12 @@ dependencies {
     implementation("androidx.work:work-runtime-ktx:2.10.0")
     implementation ("androidx.datastore:datastore-preferences:1.1.2")
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // Testing
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+    testImplementation("io.mockk:mockk:1.13.5")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("ch.qos.logback:logback-classic:1.5.16")
 }
 
 kapt {

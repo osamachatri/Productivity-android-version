@@ -70,3 +70,14 @@ fun NoteResponse.toNote() : Note{
         isPinned = isPinned
     )
 }
+
+fun NoteRequest.toNote() : Note{
+    return Note(
+        title = title,
+        content = content,
+        type = type,
+        creationTime = creationTime,
+        editedTime = creationTime,
+        isPinned = isPinned
+    )
+}
