@@ -81,10 +81,10 @@ fun TopAppBar(
     }
 }
 
-@Preview
+@Preview(showBackground = true, uiMode = 1)
 @Composable
 private fun Preview() {
-    ProductivityTheme {
+    ProductivityTheme() {
         TopAppBar(
             fullName = "Mohamed",
             screen = MainPaths.Notes,

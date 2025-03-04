@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import com.oussama_chatri.productivity.R
 import com.oussama_chatri.productivity.ui.theme.ProductivityTheme
 import com.oussama_chatri.productivity.ui.theme.dimens
-import com.oussama_chatri.productivity.ui.theme.mainColor
 
 @Composable
 fun BottomNavigationBar(
@@ -34,6 +33,12 @@ fun BottomNavigationBar(
     onEventsClick: () -> Unit,
     onPomodoroClick: () -> Unit,
 ) {
+
+    val navItemColors = NavigationBarItemDefaults.colors(
+        unselectedIconColor = MaterialTheme.colorScheme.onBackground,
+        selectedTextColor = MaterialTheme.colorScheme.primary,
+        indicatorColor = Color.Transparent
+    )
 
     val isNotesSelected by rememberSaveable {
         mutableStateOf(true)
@@ -81,12 +86,7 @@ fun BottomNavigationBar(
                 )
             },
             alwaysShowLabel = isNotesSelected,
-            colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = mainColor,
-                unselectedIconColor = Color.Black,
-                selectedTextColor = mainColor,
-                indicatorColor = Color.Transparent
-            )
+            colors = navItemColors
         )
         NavigationBarItem(
             selected = isToDoListsSelected,
@@ -108,12 +108,7 @@ fun BottomNavigationBar(
                 )
             },
             alwaysShowLabel = isToDoListsSelected,
-            colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = mainColor,
-                unselectedIconColor = Color.Black,
-                selectedTextColor = mainColor,
-                indicatorColor = Color.Transparent
-            )
+            colors = navItemColors
         )
         NavigationBarItem(
             selected = isEventsSelected,
@@ -135,12 +130,7 @@ fun BottomNavigationBar(
                 )
             },
             alwaysShowLabel = isEventsSelected,
-            colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = mainColor,
-                unselectedIconColor = Color.Black,
-                selectedTextColor = mainColor,
-                indicatorColor = Color.Transparent
-            )
+            colors = navItemColors
         )
         NavigationBarItem(
             selected = isPomodoroSelected,
@@ -162,12 +152,7 @@ fun BottomNavigationBar(
                 )
             },
             alwaysShowLabel = isPomodoroSelected,
-            colors = NavigationBarItemDefaults.colors(
-                selectedIconColor = mainColor,
-                unselectedIconColor = Color.Black,
-                selectedTextColor = mainColor,
-                indicatorColor = Color.Transparent
-            )
+            colors = navItemColors
         )
     }
 }
